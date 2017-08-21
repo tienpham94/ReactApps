@@ -1,6 +1,3 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-
 const Card = (props) => {
 	return(
   	<div style = {{margin: '1em'}}>
@@ -18,12 +15,50 @@ const Card = (props) => {
 const CardList = (props) => {
 	return(
   	<div>
-      <Card name="Paul"
-            avatar_url="https://avatars.githubusercontent.com/u/8445?v=3"
-            company="Facebook"
-      />
+      {props.cards.map(card => <Card {...card}/>)}
     </div>
   )
 }
 
-render(<CardList />, document.getElementById("app"));
+class Form extends React.Component{
+
+	handleSubmit = (event) => {
+  	event.preventDefault();
+    console.log('event: Form submit');
+  }
+
+ 	render(){
+  	return (
+    <form onSubmit={this.handleSubmit}>
+      <input type="text" placeholder="Github username" />
+      <button type="submit">Add card </button>
+    </form>
+    )
+  }
+}
+
+class App extends React.Component{
+	constructor(){
+  	super();
+    this.state = {
+    cards: [
+	{name:"a",
+  avatar_url:"https://avatars.githubusercontent.com/u/8445?v=3",
+  company:"c"},
+  {name:"a",
+  avatar_url:"https://avatars.githubusercontent.com/u/8445?v=3",
+  company:"c"},
+] };
+	}
+
+	render(){
+  	return(
+    	<div>
+        <Form />
+        <CardList cards ={this.state.cards}/>
+      </div>
+    )
+  }
+}
+
+render(<App/>, document.getElementById("app"));
