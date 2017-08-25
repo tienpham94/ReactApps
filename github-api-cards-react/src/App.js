@@ -1,3 +1,7 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+
+
 const Card = (props) => {
   return (
 
@@ -40,7 +44,9 @@ class Form extends React.Component{
     return(
       <form onSubmit={this.handleSubmit}>
         <input type="text" value={this.state.userName}
-          onChange={ (event) => this.setState({userName: event.target.value })}             required />
+          onChange={ (event) => this.setState({userName: event.target.value })}
+          placeholder="Add Github Username"
+          required />
 
         <button type="submit"> Add Card </button>
       </form>
@@ -51,7 +57,10 @@ class Form extends React.Component{
 class App extends React.Component{
 
   state = {
-            cards: []
+            cards: [
+	{name:"Tien Pham",
+  avatar_url:"https://avatars1.githubusercontent.com/u/25751050?v=4&s=400"}
+]
          };
 
 
@@ -74,5 +83,4 @@ class App extends React.Component{
 
 }
 
-
-ReactDOM.render(<App />, document.getElementById("app"));
+export default App;
