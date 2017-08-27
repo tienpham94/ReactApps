@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Navbar, Jumbotron, Glyphicon  } from 'react-bootstrap';
+import './App.css';
 
 
 const Stars = (props) => {
